@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshbuilt | Akshit — Full Stack Product Developer & Designer</title>
+
+  <!-- Google Font: Alice ONLY -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              DEFAULT: '#0d3b66',
+              dark: '#092b4c',
+              card: '#0b3257',
+              pill: '#2d5478',
+            },
+            cream: {
+              DEFAULT: '#faf0ca',
+              soft: '#f5e6ad',
+            },
+            sagepill: '#c9cfc4',
+          },
+          fontFamily: {
+            alice: ['Alice', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Enforce Alice font globally across every element */
+    *, *::before, *::after {
+      font-family: 'Alice', serif !important;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d3b66;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Blinking cursor for Hero Typewriter */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.95em;
+      background-color: #faf0ca;
+      margin-left: 4px;
+      vertical-align: -0.08em;
+      animation: blinkCursor 0.75s step-end infinite;
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Subtle floating animation for Hero Avatar */
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .avatar-float {
+      animation: floatAvatar 5s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    .avatar-float:hover {
+      animation-play-state: paused;
+      transform: scale(1.04) rotate(1.5deg);
+      box-shadow: 0 20px 45px rgba(91, 124, 250, 0.35), 0 0 0 4px rgba(250, 240, 202, 0.3);
+    }
+
+    /* Interactive Cream Primary Button */
+    .btn-cream {
+      background-color: #faf0ca;
+      color: #0d3b66;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.25s ease,
+                  background-color 0.25s ease;
+    }
+
+    .btn-cream:hover {
+      background-color: #fff6d6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(250, 240, 202, 0.28);
+    }
+
+    .btn-cream:active {
+      transform: translateY(0px);
+    }
+
+    /* Nav Links Hover Underline */
+    .nav-link {
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 1.5px;
+      background-color: #faf0ca;
+      transition: width 0.28s ease;
+    }
+
+    .nav-link:hover {
+      color: #faf0ca;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Bordered Section Cards */
+    .navy-outline-card {
+      background-color: rgba(9, 43, 76, 0.45);
+      border: 1px solid rgba(250, 240, 202, 0.45);
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .navy-outline-card:hover {
+      border-color: rgba(250, 240, 202, 0.85);
+      background-color: rgba(9, 43, 76, 0.72);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Skill Pills (Navy Sections) */
+    .skill-pill {
+      background-color: #2d5478;
+      color: #ffffff;
+      border: 1px solid transparent;
+      transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .skill-pill:hover {
+      background-color: #37648e;
+      border-color: rgba(250, 240, 202, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Learning Pills (Cream Banner Section) */
+    .focus-pill {
+      background-color: #c9cfc4;
+      color: #0d3b66;
+      border: 1px solid rgba(13, 59, 102, 0.12);
+      transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .focus-pill:hover {
+      background-color: #bcc4b5;
+      border-color: #0d3b66;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(13, 59, 102, 0.14);
+    }
+
+    /* macOS Info Card */
+    .macos-card {
+      background-color: #0a3156;
+      border: 1px solid rgba(250, 240, 202, 0.5);
+      box-shadow: 0 0 24px rgba(250, 240, 202, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .macos-card * {
+      font-family: 'Fira Code', 'Courier Prime', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    }
+
+    .macos-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(250, 240, 202, 0.85);
+      box-shadow: 0 10px 28px rgba(250, 240, 202, 0.16);
+    }
+
+    /* Project Card Hover */
+    .project-card {
+      background-color: rgba(9, 43, 76, 0.35);
+      border: 1px solid rgba(250, 240, 202, 0.45);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: #faf0ca;
+      background-color: rgba(9, 43, 76, 0.72);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-card:hover .project-icon {
+      transform: scale(1.08);
+    }
+
+    .project-icon {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Skill Row Card Hover */
+    .skill-row-card {
+      background-color: rgba(9, 43, 76, 0.35);
+      border: 1px solid rgba(250, 240, 202, 0.45);
+      transition: transform 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .skill-row-card:hover {
+      transform: translateX(4px);
+      border-color: #faf0ca;
+      background-color: rgba(9, 43, 76, 0.68);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-row-card:hover .skill-row-icon {
+      transform: scale(1.07);
+    }
+
+    .skill-row-icon {
+      transition: transform 0.28s ease;
+    }
+
+    /* Interactive Contact Section Inputs & Topic Pills */
+    .contact-input {
+      background-color: rgba(13, 59, 102, 0.75);
+      border: 1px solid rgba(250, 240, 202, 0.35);
+      color: #ffffff;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .contact-input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .contact-input:focus {
+      outline: none;
+      border-color: #faf0ca;
+      background-color: rgba(9, 43, 76, 0.95);
+      box-shadow: 0 0 0 3px rgba(250, 240, 202, 0.16);
+    }
+
+    .topic-pill {
+      background-color: #2d5478;
+      color: #ffffff;
+      border: 1px solid rgba(250, 240, 202, 0.25);
+      transition: all 0.22s ease;
+    }
+
+    .topic-pill:hover {
+      border-color: rgba(250, 240, 202, 0.75);
+      transform: translateY(-2px);
+    }
+
+    .topic-pill.active {
+      background-color: #faf0ca;
+      color: #0d3b66;
+      border-color: #faf0ca;
+      box-shadow: 0 6px 16px rgba(250, 240, 202, 0.25);
+    }
+
+    .contact-info-card {
+      background-color: rgba(9, 43, 76, 0.45);
+      border: 1px solid rgba(250, 240, 202, 0.42);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease, background-color 0.28s ease;
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-4px);
+      border-color: #faf0ca;
+      background-color: rgba(9, 43, 76, 0.8);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24), 0 0 18px rgba(250, 240, 202, 0.1);
+    }
+
+    /* Interactive Speech / Speaking Section Cards & Toggles */
+    .speech-topic-card {
+      background-color: rgba(9, 43, 76, 0.42);
+      border: 1px solid rgba(250, 240, 202, 0.35);
+      transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.26s ease, background-color 0.26s ease, box-shadow 0.26s ease;
+    }
+
+    .speech-topic-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(250, 240, 202, 0.85);
+      background-color: rgba(9, 43, 76, 0.78);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .speech-topic-card.active {
+      background-color: rgba(250, 240, 202, 0.14);
+      border-color: #faf0ca;
+      box-shadow: 0 10px 26px rgba(250, 240, 202, 0.14);
+    }
+
+    .speech-topic-card.active .speech-topic-badge {
+      background-color: #faf0ca;
+      color: #0d3b66;
+    }
+
+    .format-toggle-btn {
+      background-color: rgba(13, 59, 102, 0.65);
+      color: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(250, 240, 202, 0.3);
+      transition: all 0.22s ease;
+    }
+
+    .format-toggle-btn:hover {
+      border-color: rgba(250, 240, 202, 0.75);
+      color: #faf0ca;
+    }
+
+    .format-toggle-btn.active {
+      background-color: #faf0ca;
+      color: #0d3b66;
+      border-color: #faf0ca;
+      box-shadow: 0 5px 14px rgba(250, 240, 202, 0.22);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cream selection:text-navy">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="w-full pt-7 lg:pt-9 pb-2">
+    <div class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10">
+      <nav class="flex items-center justify-between pb-5 lg:pb-6 border-b border-cream/40">
+        <!-- Brand -->
+        <a href="#" class="text-white text-xl sm:text-2xl lg:text-[28px] tracking-wide hover:text-cream transition-colors duration-200">
+          Akshbuilt
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="hidden md:flex items-center space-x-7 lg:space-x-9 text-white text-[15px] lg:text-[17px]">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#learning" class="nav-link">Learning</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#speaking" class="nav-link">Speaking</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right CTA & Mobile Menu Toggle -->
+        <div class="flex items-center gap-3">
+          <a
+            href="#contact"
+            class="btn-cream px-5 py-2 lg:px-6 lg:py-2.5 rounded-lg text-sm sm:text-[15px] lg:text-base cursor-pointer inline-block"
+          >
+            Let’s Talk
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button
+            type="button"
+            id="mobileMenuBtn"
+            aria-label="Toggle Menu"
+            class="md:hidden p-2 rounded-lg border border-cream/40 text-cream hover:bg-cream/10 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Dropdown Nav -->
+      <div id="mobileMenu" class="hidden md:hidden pt-3 pb-4 border-b border-cream/30">
+        <ul class="flex flex-wrap justify-center gap-5 text-white text-base">
+          <li><a href="#about" class="nav-link mobile-nav-item">About</a></li>
+          <li><a href="#skills" class="nav-link mobile-nav-item">Skills</a></li>
+          <li><a href="#learning" class="nav-link mobile-nav-item">Learning</a></li>
+          <li><a href="#projects" class="nav-link mobile-nav-item">Projects</a></li>
+          <li><a href="#speaking" class="nav-link mobile-nav-item">Speaking</a></li>
+          <li><a href="#contact" class="nav-link mobile-nav-item">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <main>
+    <section class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 pt-10 pb-16 md:pt-14 md:pb-20 lg:pt-20 lg:pb-24">
+      <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-8 lg:gap-12">
+        
+        <!-- Left Content -->
+        <div class="w-full md:w-[62%] text-center md:text-left">
+          <p class="text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white leading-snug mb-2 lg:mb-3">
+            Hi there, I’m <span class="text-cream">Akshit</span>
+          </p>
+
+          <!-- Typewriter Profession Headline -->
+          <h1 class="text-3xl sm:text-4xl md:text-[42px] lg:text-[52px] text-cream leading-tight min-h-[2.4em] sm:min-h-[1.35em] mb-4 lg:mb-6">
+            <span id="typewriter-text">Full Stack Product Developer</span><span class="typewriter-cursor" aria-hidden="true"></span>
+          </h1>
+
+          <p class="text-white/95 text-sm sm:text-base lg:text-[18px] leading-relaxed max-w-lg lg:max-w-xl mx-auto md:mx-0 mb-8 lg:mb-10">
+            I'm Akshit, a developer and designer passionate about building creative digital experiences and turning ideas into reality.
+          </p>
+
+          <!-- Hero CTA Row -->
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-6 lg:gap-8">
+            <a
+              href="#projects"
+              class="btn-cream px-6 py-2.5 lg:px-8 lg:py-3 rounded-lg text-[15px] lg:text-[17px] inline-block"
+            >
+              View Projects
+            </a>
+
+            <a
+              href="https://instagram.com/akshbuilt"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-1.5 text-white hover:text-cream text-base lg:text-[18px] transition-colors duration-200"
+            >
+              <span class="relative">
+                My Instagram
+                <span class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-[1px] bg-cream"></span>
+              </span>
+              <svg class="w-4 h-4 lg:w-5 lg:h-5 opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Circular Hero Avatar Illustration (Exact visual replica) -->
+        <div class="w-full md:w-[38%] flex justify-center md:justify-end">
+          <div class="avatar-float w-56 h-56 sm:w-64 sm:h-64 md:w-[270px] md:h-[270px] lg:w-[325px] lg:h-[325px] rounded-full overflow-hidden shadow-xl select-none">
+            <svg viewBox="0 0 300 300" class="w-full h-full block" role="img" aria-label="Akshit Illustrated Avatar">
+              <defs>
+                <clipPath id="avatarCircleClip">
+                  <circle cx="150" cy="150" r="150" />
+                </clipPath>
+              </defs>
+
+              <!-- Periwinkle Blue Circle Backdrop -->
+              <circle cx="150" cy="150" r="150" fill="#5e7ef7" />
+
+              <g clip-path="url(#avatarCircleClip)">
+                <!-- Teal T-Shirt / Shoulders -->
+                <path d="M58 292 C66 252, 102 238, 125 236 L175 236 C198 238, 234 252, 242 292 L245 310 L55 310 Z" fill="#10a89d" />
+                <!-- Subtle Shirt Collar Curve -->
+                <path d="M118 236 Q150 264 182 236" fill="none" stroke="#0d8f85" stroke-width="3" />
+
+                <!-- Neck -->
+                <path d="M127 195 L127 238 Q150 256 173 238 L173 195 Z" fill="#f7be7d" />
+                <!-- Subtle Neck Shadow under Chin -->
+                <path d="M127 204 Q150 218 173 204 L173 213 Q150 226 127 213 Z" fill="#e5a764" opacity="0.55" />
+
+                <!-- Ears -->
+                <ellipse cx="88" cy="150" rx="14" ry="21" fill="#f7be7d" />
+                <ellipse cx="212" cy="150" rx="14" ry="21" fill="#f7be7d" />
+
+                <!-- Face Base -->
+                <path d="M92 122 C92 78, 208 78, 208 122 L206 164 C204 198, 178 216, 150 216 C122 216, 96 198, 94 164 Z" fill="#fcc686" />
+
+                <!-- Tousled Dark Brown Hair -->
+                <path d="
+                  M92 142
+                  C84 134, 82 120, 90 112
+                  C80 106, 78 92, 92 86
+                  C88 68, 104 48, 126 48
+                  C123 36, 130 28, 138 35
+                  C152 44, 174 34, 192 46
+                  C202 52, 212 52, 216 57
+                  C219 61, 212 67, 204 68
+                  C222 72, 232 88, 226 104
+                  C236 106, 240 116, 229 124
+                  C224 128, 216 132, 210 142
+                  C208 126, 204 114, 196 105
+                  C192 110, 187 113, 184 109
+                  C178 100, 165 94, 153 96
+                  C148 104, 141 110, 136 111
+                  C136 104, 138 99, 134 98
+                  C124 100, 114 108, 107 118
+                  C104 114, 102 110, 99 113
+                  C95 120, 94 131, 92 142 Z"
+                  fill="#472814"
+                />
+
+                <!-- Eyebrows -->
+                <path d="M111 119 Q123 113 134 119" fill="none" stroke="#472814" stroke-width="4.5" stroke-linecap="round" />
+                <path d="M166 119 Q177 113 189 119" fill="none" stroke="#472814" stroke-width="4.5" stroke-linecap="round" />
+
+                <!-- Eyes -->
+                <circle cx="123" cy="138" r="6.8" fill="#3a2010" />
+                <circle cx="177" cy="138" r="6.8" fill="#3a2010" />
+
+                <!-- Nose -->
+                <path d="M149 146 C144 154, 142 160, 146 163 C149 165, 154 164, 156 162" fill="none" stroke="#e2874b" stroke-width="4" stroke-linecap="round" />
+
+                <!-- Friendly Smile -->
+                <path d="M132 177 Q150 192 168 177" fill="none" stroke="#3a2010" stroke-width="4.5" stroke-linecap="round" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-12 md:py-16 lg:py-20">
+      <h2 class="text-center text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white mb-10 lg:mb-12">
+        Who on <span class="text-cream">earth</span> is Akshit?
+      </h2>
+
+      <!-- Outer Bordered About Container -->
+      <div class="navy-outline-card rounded-xl p-6 sm:p-8 md:p-10 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Left Bio Paragraph -->
+          <div class="lg:col-span-7 text-white/95 text-base sm:text-[17px] lg:text-[19px] leading-[1.85]">
+            <p>
+              I'm <em class="text-cream italic">Akshit</em>, a
+              <strong class="italic font-semibold text-white">developer</strong> and
+              <strong class="italic font-bold text-white">designer</strong> driven by curiosity and creativity. I enjoy building digital products, experimenting with new technologies, and turning ambitious ideas into reality. Always learning, always building, and never afraid to explore.
+            </p>
+          </div>
+
+          <!-- Right macOS Style Terminal Info Box -->
+          <div class="lg:col-span-5">
+            <div class="macos-card rounded-xl p-5 sm:p-6 lg:p-7">
+              <!-- Window Traffic Lights -->
+              <div class="flex items-center gap-2.5 mb-5 lg:mb-6">
+                <span class="w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-full bg-[#9e3333] inline-block hover:scale-110 transition-transform"></span>
+                <span class="w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-full bg-[#f4b942] inline-block hover:scale-110 transition-transform"></span>
+                <span class="w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-full bg-[#7ed957] inline-block hover:scale-110 transition-transform"></span>
+              </div>
+
+              <!-- Key-Value Details -->
+              <div class="space-y-2.5 lg:space-y-3 text-sm sm:text-[15px] lg:text-[17px] tracking-wide">
+                <div class="flex items-center">
+                  <span class="text-slate-300/75 w-24 lg:w-28">Name:</span>
+                  <span class="text-[#64b5f6]">Akshit</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-slate-300/75 w-24 lg:w-28">Role:</span>
+                  <span class="text-[#81c784]">Developer</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-slate-300/75 w-24 lg:w-28">Passion:</span>
+                  <span class="text-[#fff176]">Programming</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-slate-300/75 w-24 lg:w-28">Insta:</span>
+                  <a
+                    href="https://instagram.com/akshbuilt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[#e57373] hover:underline hover:text-[#ff8a80] transition-colors"
+                  >
+                    @akshbuilt
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Tech Badges inside About Card -->
+        <div class="mt-9 lg:mt-11 pt-2 flex flex-wrap gap-3 sm:gap-3.5 lg:gap-4">
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">HTML5</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">CSS3</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">JavaScript</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">ReactJS</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Canva</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">UI/UX</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">VS Code</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Git/Github</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Supabase/PostgeSQL</span>
+          <span class="skill-pill px-4 py-1.5 lg:px-5 lg:py-2 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">RestAPIs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section id="skills" class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-12 md:py-16 lg:py-20">
+      <h2 class="text-center text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white mb-10 lg:mb-12">
+        What I <span class="text-cream">Bring</span> to the Table
+      </h2>
+
+      <div class="space-y-6 lg:space-y-7">
+        <!-- Row 1: Frontend Development -->
+        <div class="skill-row-card rounded-xl p-5 sm:p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7 lg:gap-9">
+          <div class="skill-row-icon text-cream shrink-0">
+            <!-- Code </> SVG Icon -->
+            <svg class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16" viewBox="0 0 64 64" fill="none" stroke="#faf0ca" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 18 6 32 20 46" />
+              <polyline points="44 18 58 32 44 46" />
+              <line x1="36" y1="12" x2="28" y2="52" />
+            </svg>
+          </div>
+
+          <div class="w-full">
+            <h3 class="text-lg sm:text-xl lg:text-2xl text-white mb-3 lg:mb-3.5">Frontend Development</h3>
+            <div class="flex flex-wrap gap-2.5 sm:gap-3 lg:gap-3.5">
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">HTML5</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">CSS3</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">JavaScript</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">ReactJS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Backend Development -->
+        <div class="skill-row-card rounded-xl p-5 sm:p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7 lg:gap-9">
+          <div class="skill-row-icon text-cream shrink-0">
+            <!-- Database Stack SVG Icon -->
+            <svg class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16" viewBox="0 0 64 64" fill="none" stroke="#faf0ca" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="32" cy="14" rx="18" ry="6.5" />
+              <path d="M14 14v12c0 3.6 8 6.5 18 6.5s18-2.9 18-6.5V14" />
+              <path d="M14 26v12c0 3.6 8 6.5 18 6.5s18-2.9 18-6.5V26" />
+              <path d="M14 38v12c0 3.6 8 6.5 18 6.5s18-2.9 18-6.5V38" />
+            </svg>
+          </div>
+
+          <div class="w-full">
+            <h3 class="text-lg sm:text-xl lg:text-2xl text-white mb-3 lg:mb-3.5">Backend Development</h3>
+            <div class="flex flex-wrap gap-2.5 sm:gap-3 lg:gap-3.5">
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Supabase/PostgeSQL</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">RestAPIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Design -->
+        <div class="skill-row-card rounded-xl p-5 sm:p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7 lg:gap-9">
+          <div class="skill-row-icon text-cream shrink-0">
+            <!-- Artist Palette SVG Icon -->
+            <svg class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16" viewBox="0 0 64 64" fill="none" stroke="#faf0ca" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 8C17.6 8 6 18.7 6 32c0 12.2 9.8 22 22 22h3.5c3 0 5.5-2.5 5.5-5.5 0-1.4-.5-2.7-1.4-3.7-.9-1-1.3-2.2-1.3-3.5 0-3 2.5-5.3 5.5-5.3H44c7.7 0 14-6.3 14-14C58 14.3 46.4 8 32 8z" />
+              <circle cx="24" cy="20" r="3" />
+              <circle cx="16" cy="31" r="2.8" />
+              <circle cx="21" cy="42" r="2.8" />
+              <circle cx="33" cy="44" r="2.8" />
+              <circle cx="45" cy="27" r="2.8" />
+            </svg>
+          </div>
+
+          <div class="w-full">
+            <h3 class="text-lg sm:text-xl lg:text-2xl text-white mb-3 lg:mb-3.5">Design</h3>
+            <div class="flex flex-wrap gap-2.5 sm:gap-3 lg:gap-3.5">
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Canva</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">UI/UX</span>
+              <span class="skill-pill px-3.5 py-1 lg:px-4.5 lg:py-1.5 rounded text-xs sm:text-sm lg:text-[15px] cursor-default">Figma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CURRENTLY FOCUSING ON (FULL-WIDTH CREAM BANNER) ==================== -->
+    <section id="learning" class="w-full bg-cream text-navy py-12 md:py-16 lg:py-20 my-6 lg:my-10">
+      <div class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10">
+        <h2 class="text-2xl sm:text-3xl lg:text-[36px] text-navy mb-8 lg:mb-10 text-center sm:text-left">
+          Currently Focusing on
+        </h2>
+
+        <!-- Staggered Rows Matching Screenshot -->
+        <div class="space-y-4 lg:space-y-5">
+          <!-- Row 1 -->
+          <div class="flex flex-wrap justify-center gap-3.5 sm:gap-5 lg:gap-6">
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">Advanced JavaScript</span>
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">React Ecosystem</span>
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">AI Tools in Depth</span>
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">UI/UX Advancing</span>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="flex flex-wrap justify-center gap-3.5 sm:gap-5 lg:gap-6">
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">UI/UX Advancing</span>
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">Figma Prototyping</span>
+            <span class="focus-pill px-5 py-2 lg:px-6 lg:py-2.5 rounded text-xs sm:text-sm lg:text-[16px] cursor-default">AI &amp; Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section id="projects" class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-12 md:py-16 lg:py-20">
+      <h2 class="text-center text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white mb-12 lg:mb-14">
+        Things I've <span class="text-cream">Built</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <!-- Project 1: BloodCare -->
+        <article class="project-card rounded-xl p-6 lg:p-8 flex flex-col justify-between text-center">
+          <div>
+            <!-- Solid Cream Heart Icon -->
+            <div class="project-icon flex justify-center mb-4 lg:mb-5">
+              <svg class="w-11 h-11 lg:w-13 lg:h-13" viewBox="0 0 24 24" fill="#faf0ca">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            </div>
+
+            <h3 class="text-xl lg:text-2xl text-white mb-4">BloodCare</h3>
+
+            <p class="text-white/90 text-sm lg:text-[15.5px] leading-relaxed mb-6 lg:mb-7">
+              A comprehensive blood donation and blood bank management platform designed to connect donors and seekers seamlessly.
+            </p>
+          </div>
+
+          <div>
+            <!-- Tech Badges -->
+            <div class="flex flex-wrap justify-center gap-2 lg:gap-2.5 mb-6 lg:mb-7">
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">HTML</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">CSS</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">JavaScript</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">Supabase</span>
+            </div>
+
+            <!-- Visit CTA -->
+            <a
+              href="https://bloodcarebloodbank.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cream inline-block w-36 lg:w-44 py-2 lg:py-2.5 rounded-lg text-sm lg:text-[15.5px]"
+            >
+              Visit
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Stufolio -->
+        <article class="project-card rounded-xl p-6 lg:p-8 flex flex-col justify-between text-center">
+          <div>
+            <!-- Outlined Cream Folder Icon -->
+            <div class="project-icon flex justify-center mb-4 lg:mb-5">
+              <svg class="w-11 h-11 lg:w-13 lg:h-13" viewBox="0 0 24 24" fill="none" stroke="#faf0ca" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+            </div>
+
+            <h3 class="text-xl lg:text-2xl text-white mb-4">Stufolio</h3>
+
+            <p class="text-white/90 text-sm lg:text-[15.5px] leading-relaxed mb-6 lg:mb-7">
+              A student-focused platform designed to organize academic life and make student management simpler and smarter.
+            </p>
+          </div>
+
+          <div>
+            <!-- Tech Badges -->
+            <div class="flex flex-wrap justify-center gap-2 lg:gap-2.5 mb-6 lg:mb-7">
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">HTML</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">CSS</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">Tailwind</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">JavaScript</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">Supabase</span>
+            </div>
+
+            <!-- Visit CTA -->
+            <a
+              href="https://stufolio.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cream inline-block w-36 lg:w-44 py-2 lg:py-2.5 rounded-lg text-sm lg:text-[15.5px]"
+            >
+              Visit
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: School Website -->
+        <article class="project-card rounded-xl p-6 lg:p-8 flex flex-col justify-between text-center">
+          <div>
+            <!-- Cream Graduation Cap on Books Icon -->
+            <div class="project-icon flex justify-center mb-4 lg:mb-5">
+              <svg class="w-11 h-11 lg:w-13 lg:h-13" viewBox="0 0 64 64" fill="none">
+                <!-- Graduation Cap -->
+                <polygon points="32,8 8,19 32,30 56,19" fill="#faf0ca" />
+                <path d="M18 24v7c0 4 6.3 7 14 7s14-3 14-7v-7" fill="#faf0ca" />
+                <line x1="52" y1="20" x2="52" y2="33" stroke="#faf0ca" stroke-width="2.5" stroke-linecap="round" />
+                <!-- Stack of 3 Books -->
+                <rect x="14" y="40" width="36" height="5" rx="2" fill="#faf0ca" />
+                <rect x="16" y="47" width="34" height="5" rx="2" fill="#faf0ca" />
+                <rect x="14" y="54" width="36" height="5" rx="2" fill="#faf0ca" />
+              </svg>
+            </div>
+
+            <h3 class="text-xl lg:text-2xl text-white mb-4">School Website</h3>
+
+            <p class="text-white/90 text-sm lg:text-[15.5px] leading-relaxed mb-6 lg:mb-7">
+              A modern educational website created to provide clear communication, announcements, and digital presence for a school community.
+            </p>
+          </div>
+
+          <div>
+            <!-- Tech Badges -->
+            <div class="flex flex-wrap justify-center gap-2 lg:gap-2.5 mb-6 lg:mb-7">
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">HTML</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">CSS</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">JavaScript</span>
+              <span class="skill-pill px-2.5 py-1 lg:px-3 lg:py-1 rounded text-xs lg:text-[13.5px]">Supabase</span>
+            </div>
+
+            <!-- Not Live Yet Status -->
+            <div class="py-2 lg:py-2.5 text-sm lg:text-[15px] text-slate-300/60 select-none">
+              Not Live yet
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== CALL ME TO DELIVER SPEECH SECTION ==================== -->
+    <section id="speaking" class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-14 md:py-18 lg:py-22">
+      <div class="text-center mb-12 lg:mb-14">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream/12 border border-cream/40 text-cream text-xs sm:text-sm mb-4">
+          <svg class="w-4 h-4 text-cream" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+          <span>Guest Talks &bull; Workshops &bull; Student Sessions</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white mb-3">
+          Invite Me to <span class="text-cream">Deliver a Speech</span>
+        </h2>
+        <p class="text-white/85 text-sm sm:text-base lg:text-[18px] max-w-2xl mx-auto leading-relaxed">
+          Looking for a speaker for your school, college tech fest, hackathon, or developer community? Call me to deliver an engaging session on web development, student product building, UI/UX design, and turning ideas into real products.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        
+        <!-- Left Column: Interactive Speech Topic Selector Cards -->
+        <div class="lg:col-span-5 flex flex-col justify-between gap-4 lg:gap-5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-cream text-base lg:text-lg">1. Choose a Speech Topic</span>
+            <span class="text-xs text-white/65">Click to select</span>
+          </div>
+
+          <!-- Topic Card 1 -->
+          <button
+            type="button"
+            data-speech-topic="Building Real Products as a Student Developer"
+            class="speech-topic-card active text-left rounded-xl p-5 lg:p-6 cursor-pointer w-full"
+          >
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="speech-topic-badge skill-pill px-2.5 py-0.5 rounded text-xs">Keynote &bull; 30–45 mins</span>
+              <span class="text-cream text-xs opacity-90">Selected</span>
+            </div>
+            <h3 class="text-lg lg:text-xl text-white mb-1.5">Building Real Products as a Student Developer</h3>
+            <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+              How to move beyond tutorials, ship real platforms like BloodCare &amp; Stufolio, and build a standout portfolio early.
+            </p>
+          </button>
+
+          <!-- Topic Card 2 -->
+          <button
+            type="button"
+            data-speech-topic="Modern Frontend & UI/UX Craft"
+            class="speech-topic-card text-left rounded-xl p-5 lg:p-6 cursor-pointer w-full"
+          >
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="speech-topic-badge skill-pill px-2.5 py-0.5 rounded text-xs">Design &amp; Code &bull; 45 mins</span>
+            </div>
+            <h3 class="text-lg lg:text-xl text-white mb-1.5">Modern Frontend &amp; UI/UX Craft</h3>
+            <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+              Bridging Figma/Canva design thinking with clean HTML, CSS, JavaScript, and React interfaces that feel alive.
+            </p>
+          </button>
+
+          <!-- Topic Card 3 -->
+          <button
+            type="button"
+            data-speech-topic="From Idea to Launch with Supabase & JS"
+            class="speech-topic-card text-left rounded-xl p-5 lg:p-6 cursor-pointer w-full"
+          >
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="speech-topic-badge skill-pill px-2.5 py-0.5 rounded text-xs">Hands-on Workshop &bull; 60 mins</span>
+            </div>
+            <h3 class="text-lg lg:text-xl text-white mb-1.5">From Idea to Launch with Supabase &amp; JS</h3>
+            <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+              A practical walkthrough of taking a raw problem statement from wireframe to live database-backed deployment.
+            </p>
+          </button>
+
+          <!-- Topic Card 4 -->
+          <button
+            type="button"
+            data-speech-topic="Custom Topic / Interactive Workshop"
+            class="speech-topic-card text-left rounded-xl p-5 lg:p-6 cursor-pointer w-full"
+          >
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <span class="speech-topic-badge skill-pill px-2.5 py-0.5 rounded text-xs">Tailored Session</span>
+            </div>
+            <h3 class="text-lg lg:text-xl text-white mb-1.5">Custom Topic / Workshop</h3>
+            <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+              Have a specific theme for your club, school assembly, or webinar? Customize the session to fit your audience.
+            </p>
+          </button>
+        </div>
+
+        <!-- Right Column: Event Format, Audience & Speech Booking Form -->
+        <div class="lg:col-span-7">
+          <div class="navy-outline-card rounded-xl p-6 sm:p-8 lg:p-10 h-full flex flex-col justify-center">
+            
+            <!-- Speech Booking Form -->
+            <form id="speechBookingForm" class="space-y-5 lg:space-y-6" novalidate>
+              <div class="border-b border-cream/25 pb-4">
+                <span class="text-cream text-base lg:text-lg block">2. Event Details &amp; Speaker Invite</span>
+                <p class="text-white/75 text-xs sm:text-sm mt-1">
+                  Configure your session format and send an instant speaker invite directly to Akshit.
+                </p>
+              </div>
+
+              <!-- Event Format Toggle & Audience Selector -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-white/90 text-sm sm:text-base mb-2">Event Format</label>
+                  <div class="grid grid-cols-2 gap-2.5" id="speechFormatGroup">
+                    <button
+                      type="button"
+                      data-format="Online / Virtual Session"
+                      class="format-toggle-btn active py-2.5 px-3 rounded-lg text-xs sm:text-sm cursor-pointer text-center"
+                    >
+                      Online / Virtual
+                    </button>
+                    <button
+                      type="button"
+                      data-format="In-Person / Campus Event"
+                      class="format-toggle-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm cursor-pointer text-center"
+                    >
+                      In-Person Event
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="speechAudience" class="block text-white/90 text-sm sm:text-base mb-2">Audience Type</label>
+                  <select
+                    id="speechAudience"
+                    class="contact-input w-full px-4 py-2.5 rounded-lg text-sm sm:text-base cursor-pointer"
+                  >
+                    <option value="School Students">School Students</option>
+                    <option value="College / University Students" selected>College / University Students</option>
+                    <option value="Developer Community / Hackathon">Developer Community / Hackathon</option>
+                    <option value="Bootcamp / Design Workshop">Bootcamp / Design Workshop</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Organizer Name & Organization -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="organizerName" class="block text-white/90 text-sm sm:text-base mb-2">Organizer Name</label>
+                  <input
+                    type="text"
+                    id="organizerName"
+                    required
+                    placeholder="Aarav Sharma"
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+              <!-- Organizer Email & Phone / WhatsApp Number -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="organizerEmail" class="block text-white/90 text-sm sm:text-base mb-2">Organizer Email</label>
+                  <input
+                    type="email"
+                    id="organizerEmail"
+                    required
+                    placeholder="organizer@institution.edu"
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+                <div>
+                  <label for="organizerPhone" class="block text-white/90 text-sm sm:text-base mb-2">Phone / WhatsApp Number</label>
+                  <input
+                    type="tel"
+                    id="organizerPhone"
+                    required
+                    placeholder="+91 98765 43210"
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+              </div>
+
+              <!-- Preferred Date & Pre-filled Selected Topic -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="speechDate" class="block text-white/90 text-sm sm:text-base mb-2">Preferred Date</label>
+                  <input
+                    type="date"
+                    id="speechDate"
+                    required
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+                <div>
+                  <label for="selectedSpeechTopicInput" class="block text-cream text-sm sm:text-base mb-2">Selected Speech Topic</label>
+                  <input
+                    type="text"
+                    id="selectedSpeechTopicInput"
+                    value="Building Real Products as a Student Developer"
+                    required
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base border-cream/60"
+                  />
+                </div>
+              </div>
+
+              <!-- Event Details -->
+              <div>
+                <label for="speechEventDetails" class="block text-white/90 text-sm sm:text-base mb-2">Event Details &amp; Expected Audience Size</label>
+                <textarea
+                  id="speechEventDetails"
+                  rows="3"
+                  required
+                  placeholder="Share session duration, location/platform, expected attendees, or any specific goals..."
+                  class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Validation Error Banner -->
+              <p id="speechErrorMsg" class="hidden text-sm text-[#ff8a80] bg-[#9e3333]/30 border border-[#ff8a80]/40 rounded-lg px-4 py-2.5"></p>
+
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
+                <button
+                  type="submit"
+                  id="submitSpeechBtn"
+                  class="btn-cream w-full sm:w-auto px-8 py-3 rounded-lg text-base lg:text-[17px] cursor-pointer flex items-center justify-center gap-2.5"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  </svg>
+                  <span id="submitSpeechBtnText">Book Akshit to Speak</span>
+                </button>
+
+                <span class="text-xs sm:text-sm text-white/65">
+                  Direct speaker desk: <span class="text-cream">akshitcreates9@gmail.com</span>
+                </span>
+              </div>
+            </form>
+
+            <!-- Instant Confirmation State with Booking Summary -->
+            <div id="speechSuccessState" class="hidden py-4 space-y-6">
+              <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-cream/15 border border-cream flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-cream" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 class="text-2xl text-cream mb-1.5">Speaker Invite Ready, <span id="confirmedOrganizer">Organizer</span>!</h3>
+                <p class="text-white/85 text-sm sm:text-base max-w-md mx-auto">
+                  Review your session summary below and click <strong class="text-cream font-normal">Send Invite via Email</strong> to dispatch your booking request.
+                </p>
+              </div>
+
+              <!-- Booking Summary Card -->
+              <div class="macos-card rounded-xl p-5 sm:p-6 space-y-2.5 text-sm sm:text-[15px]">
+                <div class="flex justify-between gap-4 border-b border-cream/20 pb-2">
+                  <span class="text-slate-300/75">Topic:</span>
+                  <span id="summarySpeechTopic" class="text-cream text-right">Building Real Products as a Student Developer</span>
+                </div>
+                <div class="flex justify-between gap-4 border-b border-cream/20 pb-2">
+                  <span class="text-slate-300/75">Organization:</span>
+                  <span id="summarySpeechOrg" class="text-white text-right">Organization</span>
+                </div>
+                <div class="flex justify-between gap-4 border-b border-cream/20 pb-2">
+                  <span class="text-slate-300/75">Phone / WhatsApp:</span>
+                  <span id="summarySpeechPhone" class="text-[#fff176] text-right">+91 98765 43210</span>
+                </div>
+                <div class="flex justify-between gap-4 border-b border-cream/20 pb-2">
+                  <span class="text-slate-300/75">Format &amp; Audience:</span>
+                  <span id="summarySpeechFormatAudience" class="text-[#81c784] text-right">Online / Virtual &bull; College Students</span>
+                </div>
+                <div class="flex justify-between gap-4">
+                  <span class="text-slate-300/75">Preferred Date:</span>
+                  <span id="summarySpeechDate" class="text-[#64b5f6] text-right">TBD</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-1">
+                <a
+                  id="launchSpeechMailLink"
+                  href="mailto:akshitcreates9@gmail.com"
+                  class="btn-cream px-7 py-3 rounded-lg text-sm sm:text-base w-full sm:w-auto text-center"
+                >
+                  Send Invite via Email
+                </a>
+                <button
+                  type="button"
+                  onclick="resetSpeechForm()"
+                  class="border border-cream/50 text-cream hover:bg-cream/10 px-6 py-3 rounded-lg text-sm sm:text-base w-full sm:w-auto cursor-pointer transition-colors"
+                >
+                  Edit Invite Details
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== INTERACTIVE CONTACT SECTION ==================== -->
+    <section id="contact" class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-14 md:py-18 lg:py-24">
+      <div class="text-center mb-12 lg:mb-14">
+        <h2 class="text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] text-white mb-3">
+          Let’s Build Something <span class="text-cream">Together</span>
+        </h2>
+        <p class="text-white/85 text-sm sm:text-base lg:text-[18px] max-w-xl mx-auto">
+          Have a project idea, freelance inquiry, or just want to say hello? Drop a message below or connect directly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        
+        <!-- Left Column: Direct Contact Cards & Availability -->
+        <div class="lg:col-span-5 flex flex-col justify-between gap-5 lg:gap-6">
+          
+          <!-- Availability Status Card -->
+          <div class="contact-info-card rounded-xl p-6 lg:p-7">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cream/15 border border-cream/40 mb-4">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+              <span class="text-cream text-xs sm:text-sm">Open for Freelance &amp; Collaborations</span>
+            </div>
+            <h3 class="text-xl lg:text-2xl text-white mb-2">Quick Response, Clean Execution</h3>
+            <p class="text-white/85 text-sm lg:text-[15.5px] leading-relaxed">
+              Whether it’s a full-stack web product, a high-converting landing page, or a complete UI/UX overhaul, I reply within 24 hours.
+            </p>
+          </div>
+
+          <!-- Email Card with One-Click Copy -->
+          <div class="contact-info-card rounded-xl p-6 lg:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-center gap-4 min-w-0">
+                <div class="w-12 h-12 rounded-xl bg-cream/15 border border-cream/35 flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 text-cream" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <span class="block text-xs sm:text-sm text-cream/80 mb-0.5">Direct Email</span>
+                  <a href="mailto:akshitcreates9@gmail.com" class="text-white hover:text-cream text-base lg:text-[17px] truncate block transition-colors">
+                    akshitcreates9@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                id="sectionCopyBtn"
+                onclick="copySectionEmail()"
+                class="skill-pill px-3.5 py-1.5 rounded-lg text-xs sm:text-sm shrink-0 cursor-pointer"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+
+          <!-- Instagram Card -->
+          <a
+            href="https://instagram.com/akshbuilt"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-info-card rounded-xl p-6 lg:p-7 flex items-center justify-between gap-4 group"
+          >
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-cream/15 border border-cream/35 flex items-center justify-center shrink-0 group-hover:bg-cream group-hover:text-navy transition-colors">
+                <svg class="w-6 h-6 text-cream group-hover:text-navy transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
+              <div>
+                <span class="block text-xs sm:text-sm text-cream/80 mb-0.5">Instagram DM</span>
+                <span class="text-white group-hover:text-cream text-base lg:text-[18px] transition-colors">@akshbuilt</span>
+              </div>
+            </div>
+
+            <span class="text-cream/80 group-hover:text-cream group-hover:translate-x-1 transition-all text-sm sm:text-base flex items-center gap-1">
+              Follow
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </span>
+          </a>
+
+        </div>
+
+        <!-- Right Column: Interactive Working Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="navy-outline-card rounded-xl p-6 sm:p-8 lg:p-10 h-full flex flex-col justify-center">
+            
+            <!-- Form View -->
+            <form id="portfolioContactForm" class="space-y-5 lg:space-y-6" novalidate>
+              <div>
+                <label class="block text-cream text-sm sm:text-base mb-2.5">What are we building?</label>
+                <div class="flex flex-wrap gap-2.5" id="topicSelector">
+                  <button type="button" data-topic="Web Development" class="topic-pill active px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-lg text-xs sm:text-sm cursor-pointer">
+                    Web Development
+                  </button>
+                  <button type="button" data-topic="UI/UX Design" class="topic-pill px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-lg text-xs sm:text-sm cursor-pointer">
+                    UI/UX Design
+                  </button>
+                  <button type="button" data-topic="Full Stack App" class="topic-pill px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-lg text-xs sm:text-sm cursor-pointer">
+                    Full Stack App
+                  </button>
+                  <button type="button" data-topic="Say Hello" class="topic-pill px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-lg text-xs sm:text-sm cursor-pointer">
+                    Say Hello
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="senderName" class="block text-white/90 text-sm sm:text-base mb-2">Your Name</label>
+                  <input
+                    type="text"
+                    id="senderName"
+                    required
+                    placeholder="John Doe"
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+                <div>
+                  <label for="senderEmail" class="block text-white/90 text-sm sm:text-base mb-2">Your Email</label>
+                  <input
+                    type="email"
+                    id="senderEmail"
+                    required
+                    placeholder="john@example.com"
+                    class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="senderMessage" class="block text-white/90 text-sm sm:text-base mb-2">Project Details or Message</label>
+                <textarea
+                  id="senderMessage"
+                  rows="4"
+                  required
+                  placeholder="Tell me about your idea, timeline, or goals..."
+                  class="contact-input w-full px-4 py-3 rounded-lg text-sm sm:text-base resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Validation Error Banner -->
+              <p id="formErrorMsg" class="hidden text-sm text-[#ff8a80] bg-[#9e3333]/30 border border-[#ff8a80]/40 rounded-lg px-4 py-2.5"></p>
+
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
+                <button
+                  type="submit"
+                  id="submitContactBtn"
+                  class="btn-cream w-full sm:w-auto px-8 py-3 rounded-lg text-base lg:text-[17px] cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <span id="submitBtnText">Send Message</span>
+                  <svg id="submitBtnIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                  </svg>
+                </button>
+
+                <span class="text-xs sm:text-sm text-white/65">
+                  Or email directly at <span class="text-cream">akshitcreates9@gmail.com</span>
+                </span>
+              </div>
+            </form>
+
+            <!-- Confirmation View (Shown after successful submission) -->
+            <div id="contactSuccessState" class="hidden text-center py-6 space-y-5">
+              <div class="w-16 h-16 rounded-full bg-cream/15 border border-cream flex items-center justify-center mx-auto">
+                <svg class="w-8 h-8 text-cream" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+
+              <div>
+                <h3 class="text-2xl text-cream mb-2">Message Prepared, <span id="confirmedName">Friend</span>!</h3>
+                <p class="text-white/90 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                  Thanks for reaching out about <span id="confirmedTopic" class="text-cream">Web Development</span>. Your message is ready—you can launch your email app to send it right away or send another note.
+                </p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+                <a
+                  id="launchMailClientLink"
+                  href="mailto:akshitcreates9@gmail.com"
+                  class="btn-cream px-6 py-2.5 rounded-lg text-sm sm:text-base w-full sm:w-auto text-center"
+                >
+                  Open in Mail App
+                </a>
+                <button
+                  type="button"
+                  onclick="resetContactForm()"
+                  class="border border-cream/50 text-cream hover:bg-cream/10 px-6 py-2.5 rounded-lg text-sm sm:text-base w-full sm:w-auto cursor-pointer transition-colors"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="w-full py-8 lg:py-10 mt-4 border-t border-cream/15">
+    <div class="max-w-5xl lg:max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 text-center">
+      <p class="text-xs sm:text-sm lg:text-[15px] text-slate-300/60">
+        © 2026 Akshit (Akshbuilt). All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE "LET'S TALK" MODAL ==================== -->
+  <div
+    id="contactModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4"
+    onclick="if(event.target === this) closeContactModal()"
+  >
+    <div class="bg-navy-dark border border-cream/60 rounded-2xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl transform transition-all">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-cream text-lg">Let’s Build Something Great</span>
+        <button
+          type="button"
+          onclick="closeContactModal()"
+          aria-label="Close modal"
+          class="text-white/70 hover:text-cream text-2xl leading-none cursor-pointer px-2"
+        >
+          &times;
+        </button>
+      </div>
+
+      <p class="text-white/90 text-sm leading-relaxed mb-6">
+        Have a product idea, freelance project, or collaboration in mind? Reach out directly via email or Instagram!
+      </p>
+
+      <!-- Email Box with Copy Button -->
+      <div class="bg-navy border border-cream/35 rounded-xl p-3.5 mb-5 flex items-center justify-between gap-2">
+        <span id="emailText" class="text-cream text-sm sm:text-base truncate">akshitcreates9@gmail.com</span>
+        <button
+          type="button"
+          onclick="copyEmail()"
+          id="copyBtn"
+          class="skill-pill px-3 py-1.5 rounded-lg text-xs shrink-0 cursor-pointer"
+        >
+          Copy
+        </button>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a
+          href="mailto:akshitcreates9@gmail.com?subject=Project%20Inquiry%20-%20Akshbuilt"
+          class="btn-cream px-5 py-2.5 rounded-lg text-sm flex-1 text-center"
+        >
+          Send Email
+        </a>
+        <a
+          href="https://instagram.com/akshbuilt"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-cream/50 text-cream hover:bg-cream/10 px-5 py-2.5 rounded-lg text-sm flex-1 text-center transition-colors"
+        >
+          DM @akshbuilt
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT: TYPEWRITER, MOBILE NAV & MODAL ==================== -->
+  <script>
+    // 1. Typewriter Effect for Hero Profession Text
+    (function initTypewriter() {
+      const roles = [
+        "Full Stack Product Developer",
+        "UI/UX Designer",
+        "Creative Frontend Engineer",
+        "Responsive Web Developer"
+      ];
+
+      const targetEl = document.getElementById("typewriter-text");
+      if (!targetEl) return;
+
+      let roleIndex = 0;
+      let charIndex = roles[0].length;
+      let isDeleting = false;
+
+      // Timing configuration (in ms)
+      const typeSpeed = 75;
+      const deleteSpeed = 42;
+      const pauseAfterType = 1700;
+      const pauseAfterDelete = 350;
+
+      function tick() {
+        const currentRole = roles[roleIndex];
+
+        if (!isDeleting) {
+          // Typing forward
+          charIndex++;
+          targetEl.textContent = currentRole.substring(0, charIndex);
+
+          if (charIndex === currentRole.length) {
+            isDeleting = true;
+            setTimeout(tick, pauseAfterType);
+            return;
+          }
+          setTimeout(tick, typeSpeed);
+        } else {
+          // Backspacing
+          charIndex--;
+          targetEl.textContent = currentRole.substring(0, charIndex);
+
+          if (charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(tick, pauseAfterDelete);
+            return;
+          }
+          setTimeout(tick, deleteSpeed);
+        }
+      }
+
+      // Start deleting after initial pause so first phrase is immediately visible on load
+      setTimeout(() => {
+        isDeleting = true;
+        tick();
+      }, pauseAfterType);
+    })();
+
+    // 2. Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      document.querySelectorAll(".mobile-nav-item").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    }
+
+    // 3. Contact Modal & Clipboard Copy
+    const contactModal = document.getElementById("contactModal");
+
+    function openContactModal() {
+      contactModal.classList.remove("hidden");
+      contactModal.classList.add("flex");
+    }
+
+    function closeContactModal() {
+      contactModal.classList.add("hidden");
+      contactModal.classList.remove("flex");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !contactModal.classList.contains("hidden")) {
+        closeContactModal();
+      }
+    });
+
+    function copyEmail() {
+      const email = "akshitcreates9@gmail.com";
+      const copyBtn = document.getElementById("copyBtn");
+
+      const tempInput = document.createElement("input");
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      copyBtn.textContent = "Copied!";
+      copyBtn.style.backgroundColor = "#faf0ca";
+      copyBtn.style.color = "#0d3b66";
+
+      setTimeout(() => {
+        copyBtn.textContent = "Copy";
+        copyBtn.style.backgroundColor = "";
+        copyBtn.style.color = "";
+      }, 2000);
+    }
+
+    // 4. Interactive Contact Section Logic
+    function copySectionEmail() {
+      const email = "akshitcreates9@gmail.com";
+      const btn = document.getElementById("sectionCopyBtn");
+
+      const tempInput = document.createElement("input");
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      btn.textContent = "Copied!";
+      btn.style.backgroundColor = "#faf0ca";
+      btn.style.color = "#0d3b66";
+
+      setTimeout(() => {
+        btn.textContent = "Copy";
+        btn.style.backgroundColor = "";
+        btn.style.color = "";
+      }, 2000);
+    }
+
+    (function initContactSection() {
+      let selectedTopic = "Web Development";
+      const topicButtons = document.querySelectorAll("#topicSelector .topic-pill");
+      const contactForm = document.getElementById("portfolioContactForm");
+      const successState = document.getElementById("contactSuccessState");
+      const errorMsg = document.getElementById("formErrorMsg");
+      const submitBtn = document.getElementById("submitContactBtn");
+      const submitBtnText = document.getElementById("submitBtnText");
+
+      topicButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          topicButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedTopic = btn.getAttribute("data-topic");
+        });
+      });
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          errorMsg.classList.add("hidden");
+
+          const nameVal = document.getElementById("senderName").value.trim();
+          const emailVal = document.getElementById("senderEmail").value.trim();
+          const messageVal = document.getElementById("senderMessage").value.trim();
+
+          if (!nameVal || !emailVal || !messageVal) {
+            errorMsg.textContent = "Please fill in your name, email address, and message before sending.";
+            errorMsg.classList.remove("hidden");
+            return;
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(emailVal)) {
+            errorMsg.textContent = "Please enter a valid email address so Akshit can reply to you.";
+            errorMsg.classList.remove("hidden");
+            return;
+          }
+
+          // Simulate smooth sending feedback
+          submitBtn.disabled = true;
+          submitBtnText.textContent = "Preparing...";
+
+          setTimeout(() => {
+            const mailSubject = encodeURIComponent(`[${selectedTopic}] Inquiry from ${nameVal}`);
+            const mailBody = encodeURIComponent(
+              `Hi Akshit,\n\nName: ${nameVal}\nEmail: ${emailVal}\nTopic: ${selectedTopic}\n\nMessage:\n${messageVal}`
+            );
+
+            document.getElementById("confirmedName").textContent = nameVal;
+            document.getElementById("confirmedTopic").textContent = selectedTopic;
+            document.getElementById("launchMailClientLink").href =
+              `mailto:akshitcreates9@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+
+            contactForm.classList.add("hidden");
+            successState.classList.remove("hidden");
+            submitBtn.disabled = false;
+            submitBtnText.textContent = "Send Message";
+          }, 550);
+        });
+      }
+    })();
+
+    function resetContactForm() {
+      const contactForm = document.getElementById("portfolioContactForm");
+      const successState = document.getElementById("contactSuccessState");
+      contactForm.reset();
+      successState.classList.add("hidden");
+      contactForm.classList.remove("hidden");
+    }
+
+    // 5. Interactive Call Me to Deliver Speech Section Logic
+    (function initSpeechBookingSection() {
+      let selectedFormat = "Online / Virtual Session";
+      const topicCards = document.querySelectorAll(".speech-topic-card");
+      const topicInput = document.getElementById("selectedSpeechTopicInput");
+      const formatBtns = document.querySelectorAll("#speechFormatGroup .format-toggle-btn");
+      const speechForm = document.getElementById("speechBookingForm");
+      const speechSuccess = document.getElementById("speechSuccessState");
+      const speechError = document.getElementById("speechErrorMsg");
+      const submitSpeechBtn = document.getElementById("submitSpeechBtn");
+      const submitSpeechBtnText = document.getElementById("submitSpeechBtnText");
+
+      // Topic card selection updates active visual state & pre-fills topic input
+      topicCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          topicCards.forEach((c) => {
+            c.classList.remove("active");
+            const statusTag = c.querySelector(".text-cream.text-xs");
+            if (statusTag) statusTag.remove();
+          });
+
+          card.classList.add("active");
+          const badgeRow = card.querySelector(".flex.items-center.justify-between");
+          if (badgeRow) {
+            const selectedSpan = document.createElement("span");
+            selectedSpan.className = "text-cream text-xs opacity-90";
+            selectedSpan.textContent = "Selected";
+            badgeRow.appendChild(selectedSpan);
+          }
+
+          const chosenTopic = card.getAttribute("data-speech-topic");
+          if (topicInput && chosenTopic) {
+            topicInput.value = chosenTopic;
+          }
+        });
+      });
+
+      // Event format toggle (Online vs In-Person)
+      formatBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          formatBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedFormat = btn.getAttribute("data-format");
+        });
+      });
+
+      if (speechForm) {
+        speechForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          speechError.classList.add("hidden");
+
+          const organizerName = document.getElementById("organizerName").value.trim();
+          const organizerOrg = document.getElementById("organizerOrg").value.trim();
+          const organizerEmail = document.getElementById("organizerEmail").value.trim();
+          const organizerPhone = document.getElementById("organizerPhone").value.trim();
+          const speechDate = document.getElementById("speechDate").value;
+          const speechTopic = topicInput.value.trim();
+          const speechAudience = document.getElementById("speechAudience").value;
+          const speechDetails = document.getElementById("speechEventDetails").value.trim();
+
+          if (!organizerName || !organizerOrg || !organizerEmail || !organizerPhone || !speechDate || !speechTopic || !speechDetails) {
+            speechError.textContent = "Please complete all fields (organizer details, phone number, date, topic, and event details) to prepare your speaker invite.";
+            speechError.classList.remove("hidden");
+            return;
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(organizerEmail)) {
+            speechError.textContent = "Please enter a valid organizer email address.";
+            speechError.classList.remove("hidden");
+            return;
+          }
+
+          const phoneDigits = organizerPhone.replace(/\D/g, "");
+          if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+            speechError.textContent = "Please enter a valid Phone / WhatsApp number (7 to 15 digits).";
+            speechError.classList.remove("hidden");
+            return;
+          }
+
+          submitSpeechBtn.disabled = true;
+          submitSpeechBtnText.textContent = "Preparing Invite...";
+
+          setTimeout(() => {
+            const subject = encodeURIComponent(`Speaker Invitation: ${speechTopic} — ${organizerOrg}`);
+            const body = encodeURIComponent(
+              `Hi Akshit,\n\nWe would love to invite you to deliver a speech/session!\n\n` +
+              `--- Speaker Booking Summary ---\n` +
+              `Organizer Name: ${organizerName}\n` +
+              `Organization / Institution: ${organizerOrg}\n` +
+              `Organizer Email: ${organizerEmail}\n` +
+              `Phone / WhatsApp Number: ${organizerPhone}\n` +
+              `Speech Topic: ${speechTopic}\n` +
+              `Event Format: ${selectedFormat}\n` +
+              `Audience Type: ${speechAudience}\n` +
+              `Preferred Date: ${speechDate}\n\n` +
+              `Event Details:\n${speechDetails}\n\n` +
+              `Looking forward to hearing from you!`
+            );
+
+            document.getElementById("confirmedOrganizer").textContent = organizerName;
+            document.getElementById("summarySpeechTopic").textContent = speechTopic;
+            document.getElementById("summarySpeechOrg").textContent = organizerOrg;
+            document.getElementById("summarySpeechPhone").textContent = organizerPhone;
+            document.getElementById("summarySpeechFormatAudience").textContent = `${selectedFormat} • ${speechAudience}`;
+            document.getElementById("summarySpeechDate").textContent = speechDate;
+            document.getElementById("launchSpeechMailLink").href =
+              `mailto:akshitcreates9@gmail.com?subject=${subject}&body=${body}`;
+
+            speechForm.classList.add("hidden");
+            speechSuccess.classList.remove("hidden");
+            submitSpeechBtn.disabled = false;
+            submitSpeechBtnText.textContent = "Book Akshit to Speak";
+          }, 500);
+        });
+      }
+    })();
+
+    function resetSpeechForm() {
+      const speechForm = document.getElementById("speechBookingForm");
+      const speechSuccess = document.getElementById("speechSuccessState");
+      speechSuccess.classList.add("hidden");
+      speechForm.classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
